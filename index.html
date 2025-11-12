@@ -297,7 +297,7 @@
 
         /* === NEW: Active Nav Link Styling === */
         /* Base styling for non-active links */
-        .nav-link {
+        .nav-link, .mobile-nav-link {
             /* Keep existing styles but remove the contact us background/shadow for non-active links */
             background-color: transparent !important;
             box-shadow: none !important;
@@ -305,7 +305,7 @@
         }
         
         /* Styling for the actively highlighted link (mimicking the Contact Us button look) */
-        .nav-link.active-link {
+        .nav-link.active-link, .mobile-nav-link.active-link {
             background-color: rgba(6, 182, 212, 0.6) !important;
             color: #64748b !important;
             box-shadow: 0 4px 10px rgba(6, 182, 212, 0.4) !important; /* Cyan shadow */
@@ -342,8 +342,6 @@
 
     <div id="intro-scene" class="space-y-8">
         <div class="intro-content px-10"> 
-            <!--<i class="ph-fill ph-chart-line intro-logo text-7xl text-asl-accent"></i>-->
-            <!-- ADDED mx-auto CLASS HERE -->
             <img src = "images/background/logo.png" class="mx-auto" style="height: 100px; width: 100px;">
             <h1 class="text-4xl sm:text-6xl lg:text-6xl font-extrabold tracking-normal sm:tracking-wider mt-4">ASL CONSULTING</h1>
             <p class="text-2xl font-light text-white-300 mt-2 animate-pulse">Creating a better tomorrow, together.</p>
@@ -396,13 +394,18 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <a href="#home" class="flex items-center flex-shrink-0 transition duration-200">
-                    <!-- FIX: Removed rounded-lg, shadow-md from the div container and p-1 from the img tag -->
-                    <!-- This ensures no container styling interferes with the transparent PNG's ability to blend. -->
                     <div class="w-12 h-8 mr-2 flex items-center justify-center">
                         <img src = "images/background/logo.png" class="w-full h-full object-contain">
                     </div>
                     <span class="text-2xl font-extrabold text-asl-primary tracking-wide">CONSULTING</span>
                 </a>
+                
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-asl-primary hover:text-asl-accent hover:bg-asl-primary/10 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-asl-accent transition duration-150">
+                        <i id="menu-icon" class="ph-bold ph-list text-2xl"></i>
+                    </button>
+                </div>
+
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-6">
                         <a href="#home" data-section="home" class="nav-link text-gray-700 hover:text-asl-primary px-3 py-2 rounded-md text-sm font-medium transition duration-300">Home</a>
@@ -411,11 +414,24 @@
                         <a href="#team" data-section="team" class="nav-link text-gray-700 hover:text-asl-primary px-3 py-2 rounded-md text-sm font-medium transition duration-300">Team</a>
                         <a href="#collaborators" data-section="collaborators" class="nav-link text-gray-700 hover:text-asl-primary px-3 py-2 rounded-md text-sm font-medium transition duration-300">Collaborators</a>
                         <a href="#testimonials" data-section="testimonials" class="nav-link text-gray-700 hover:text-asl-primary px-3 py-2 rounded-md text-sm font-medium transition duration-300">Testimonials</a>
-                        <a href="#contact" data-section="contact" class="nav-link bg-asl-accent text-white hover:bg-cyan-600 px-4 py-2 rounded-full text-sm font-semibold transition duration-300 shadow-lg">Contact Us</a>
+                        <a href="#contact" data-section="contact" class="nav-link text-gray-700 hover:text-asl-primary px-3 py-2 rounded-md text-sm font-medium transition duration-300">Contact Us</a>
                     </div>
                 </div>
             </div>
         </div>
+        
+        <div id="mobile-menu" class="hidden md:hidden pb-4 transition-all duration-300 ease-in-out border-t border-asl-primary/10">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 flex flex-col">
+                <a href="#home" data-section="home" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-asl-primary/10 hover:text-asl-primary transition duration-200">Home</a>
+                <a href="#consulting" data-section="consulting" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-asl-primary/10 hover:text-asl-primary transition duration-200">Consulting</a>
+                <a href="#services" data-section="services" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-asl-primary/10 hover:text-asl-primary transition duration-200">Services</a>
+                <a href="#team" data-section="team" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-asl-primary/10 hover:text-asl-primary transition duration-200">Team</a>
+                <a href="#collaborators" data-section="collaborators" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-asl-primary/10 hover:text-asl-primary transition duration-200">Collaborators</a>
+                <a href="#testimonials" data-section="testimonials" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-asl-primary/10 hover:text-asl-primary transition duration-200">Testimonials</a>
+                <a href="#contact" data-section="contact" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-asl-primary/10 hover:text-asl-primary transition duration-200">Contact Us</a>
+            </div>
+        </div>
+
     </nav>
 
     <main class="pt-16">
@@ -519,7 +535,7 @@
                         <div class="step-icon"></div>
                         <div class="step-content bg-asl-card-bg shadow-xl rounded-xl p-5 border-b-4 border-asl-primary transition duration-300 hover:shadow-2xl interactive-card">
                             <img style = "object-position: center" src="images/consulting/strategy_and_planning.jpg" alt="A whiteboard with strategic planning notes" class="w-full h-32 object-cover rounded-lg mb-4 border border-asl-primary/30">
-                            <h3 class="text-2xl font-bold text-asl-primary mb-3 mt-2"></h3>
+                            <h3 class="text-2xl font-bold text-asl-primary mb-3 mt-2">Initial Setup & Structuring</h3>
                             <p class="text-base text-asl-secondary mb-4 flex-grow">Laying the groundwork for robust market entry and fiscal stability.</p>
                             <ul class="text-sm leading-relaxed text-gray-700 space-y-3 mt-auto">
                                 <li class="flex items-start"><i class="ph ph-check-circle-fill text-lg text-asl-accent mr-2 pt-0.5 flex-shrink-0"></i>• Selection of the optimal entry vehicle</li>
@@ -534,7 +550,7 @@
                         <div class="step-icon"></div>
                         <div class="step-content bg-asl-card-bg shadow-xl rounded-xl p-5 border-b-4 border-asl-accent transition duration-300 hover:shadow-2xl interactive-card">
                             <img style = "object-position: center" src="images/consulting/business_support.jpg" alt="People working collaboratively in an office" class="w-full h-32 object-cover rounded-lg mb-4 border border-asl-accent/30">
-                            <h3 class="text-2xl font-bold text-asl-primary mb-3 mt-2"></h3>
+                            <h3 class="text-2xl font-bold text-asl-primary mb-3 mt-2">CFO & Business Support</h3>
                             <p class="text-base text-asl-secondary mb-4 flex-grow">Seamless management of daily operational and compliance needs.</p>
                             <ul class="text-sm leading-relaxed text-gray-700 space-y-3 mt-auto">
                                 <li class="flex items-start"><i class="ph ph-check-circle-fill text-lg text-asl-accent mr-2 pt-0.5 flex-shrink-0"></i>• Company formation, including compliance with all regulatory requirements</li>
@@ -550,7 +566,7 @@
                         <div class="step-icon"></div>
                         <div class="step-content bg-asl-card-bg shadow-xl rounded-xl p-5 border-b-4 border-asl-primary transition duration-300 hover:shadow-2xl interactive-card">
                             <img src="images/consulting/business_process_reengineering.jpg" alt="A flowchart diagram showing optimization" class="w-full h-32 object-cover rounded-lg mb-4 border border-asl-primary/30">
-                            <h3 class="text-2xl font-bold text-asl-primary mb-3 mt-2"></h3>
+                            <h3 class="text-2xl font-bold text-asl-primary mb-3 mt-2">Business Process Re-engineering</h3>
                             <p class="text-base text-asl-secondary mb-4 flex-grow">Optimizing structures and workflows for operational excellence. </p>
                             <p class="text-base text-asl-secondary mb-4 flex-grow">Our professionals specialize in re-engineering business processes with a focus on essential enterprise-level internal control requirements. We assess existing processes, identify key inefficiencies, and develop optimized workflows that streamline operations. This involves redesigning organizational structures and mapping skill matrices in collaboration with stakeholders. We then create a comprehensive implementation plan to ensure a smooth transition to the new process. Acting as both catalysts and implementation partners, our team guides clients through the change, helping them achieve operational excellence and transform management practices effectively.</p>
                         </div>
@@ -560,7 +576,7 @@
                         <div class="step-icon"></div>
                         <div class="step-content bg-asl-card-bg shadow-xl rounded-xl p-5 border-b-4 border-asl-accent transition duration-300 hover:shadow-2xl interactive-card">
                             <img src="images/consulting/due_diligence.jpg" alt="Magnifying glass over financial documents" class="w-full h-32 object-cover rounded-lg mb-4 border border-asl-accent/30">
-                            <h3 class="text-2xl font-bold text-asl-primary mb-3 mt-2"></h3>
+                            <h3 class="text-2xl font-bold text-asl-primary mb-3 mt-2">Due Diligence & Audit</h3>
                             <p class="text-base text-asl-secondary mb-4 flex-grow">Expert evaluation for critical decision making and financial health assessment.</p>
                             <ul class="text-sm leading-relaxed text-gray-700 space-y-3 mt-auto">
                                 <li class="flex items-start"><i class="ph ph-check-circle-fill text-lg text-asl-accent mr-2 pt-0.5 flex-shrink-0"></i>• Analyzing key financial metrics</li>
@@ -588,16 +604,15 @@
                     <div class="bg-asl-card-bg p-6 rounded-xl shadow-xl h-full scroll-reveal interactive-card border border-asl-primary/30">
                     
                         <img src="images/services/business_setup.jpg" alt="Graphic representing entity formation and legal setup" class="w-full h-32 object-cover rounded-lg mb-4 border border-asl-primary/30">
-                        <h3 class="text-xl font-bold text-asl-primary mb-3"></h3>
+                        <h3 class="text-xl font-bold text-asl-primary mb-3">Business Setup & Formation</h3>
                         <p class="text-gray-700 text-sm">
                             We assist in setting up business enterprises in India, specializing in establishing startup companies. Our services provide complete solutions for obtaining necessary registrations and approvals, managing accounts, and offering ongoing support until your internal finance and accounts department is fully equipped to operate independently. Additionally, we offer high-quality, hassle-free, end-to-end business solutions.
                         </p> 
                     </div>
                     
                     <div class="bg-asl-card-bg p-6 rounded-xl shadow-xl h-full scroll-reveal interactive-card border border-asl-accent/30" style="transition-delay: 100ms;">
-                        <!--<i class="ph-bold ph-wallet text-4xl text-asl-accent mb-3"></i>-->
                         <img src="images/services/payroll_management.jpg" alt="Graphic representing cloud-based payroll and HR management" class="w-full h-32 object-cover rounded-lg mb-4 border border-asl-accent/30">
-                        <h3 class="text-xl font-bold text-asl-primary mb-3"></h3>
+                        <h3 class="text-xl font-bold text-asl-primary mb-3">Payroll & HR Management</h3>
                         <p class="text-gray-700 text-sm">
                             We have partnered with a third-party cloud-based SaaS tool to streamline the payroll process. This software handles the following key features:
                         </p>
@@ -618,9 +633,8 @@
                     </div>
 
                     <div class="bg-asl-card-bg p-6 rounded-xl shadow-xl h-full scroll-reveal interactive-card border border-asl-primary/30" style="transition-delay: 200ms;">
-                        <!--<i class="ph-bold ph-file-text text-4xl text-asl-primary mb-3"></i>-->
                         <img src="images/services/taxes.jpg" alt="Graphic representing a legal document with a stamp of approval" class="w-full h-32 object-cover rounded-lg mb-4 border border-asl-primary/30">
-                        <h3 class="text-xl font-bold text-asl-primary mb-3"></h3>
+                        <h3 class="text-xl font-bold text-asl-primary mb-3">Tax Advisory & Preparation</h3>
                         <p class="text-gray-700 text-sm">
                             "In this world nothing can be said to be certain, except death and taxes" - Benjamin Franklin
                         </p>
@@ -631,9 +645,8 @@
                     </div>
 
                     <div class="bg-asl-card-bg p-6 rounded-xl shadow-xl h-full scroll-reveal interactive-card border border-asl-accent/30" style="transition-delay: 300ms;">
-                        <!--<i class="ph-bold ph-receipt text-4xl text-asl-accent mb-3"></i>-->
                         <img src="images/services/statutory_compliance.jpg" alt="Graphic representing tax forms and a calculator" class="w-full h-32 object-cover rounded-lg mb-4 border border-asl-accent/30">
-                        <h3 class="text-xl font-bold text-asl-primary mb-3"></h3>
+                        <h3 class="text-xl font-bold text-asl-primary mb-3">Regulatory Compliance</h3>
                         <p class="text-gray-700 text-sm">
                             We handle all statutory compliances and regulatory framework, from filling of periodic returns under various statutes and maintenance of statutory records and advice the clients on regular basis to ensuring compliance under:
                         </p>
@@ -646,9 +659,8 @@
                     </div>
                     
                     <div class="bg-asl-card-bg p-6 rounded-xl shadow-xl h-full lg:col-span-2 scroll-reveal interactive-card border border-asl-primary/30" style="transition-delay: 400ms;">
-                        <!--<i class="ph-bold ph-chart-bar text-4xl text-asl-primary mb-3"></i>-->
                         <img src="images/services/other_services.jpg" alt="Graphic representing a flowchart optimization and data efficiency" class="w-full h-32 object-cover rounded-lg mb-4 border border-asl-primary/30">
-                        <h3 class="text-xl font-bold text-asl-primary mb-3"></h3>
+                        <h3 class="text-xl font-bold text-asl-primary mb-3">ERP Support & Process Optimization</h3>
                         <p class="text-gray-700 text-sm">
                             We drive significant operational efficiencies while improving quality and reducing costs. Through proven methods, frameworks, and techniques, enabled by cutting-edge technology, we deliver effective process optimization.
                         </p>
@@ -722,7 +734,6 @@
                 
                 <div class="grid md:grid-cols-3 gap-8">
                     <div onclick="openCollaboratorModal('zoho')" class="scroll-reveal bg-asl-card-bg p-6 rounded-xl shadow-xl text-center cursor-pointer interactive-card border border-asl-primary/30">
-                        <!--<i class="ph-fill ph-seal-check text-5xl text-asl-primary mb-3"></i>-->
                         <img style = "object-position: center" src="images/collaborators/zoho.png" alt="Zoho" class="w-full h-32 object-cover rounded-lg mb-4">
                         <h3 class="text-xl font-bold text-asl-primary">Zoho Technologies</h3>
                         <p class="text-sm text-asl-accent">Certified ZOHO Pro Advisors</p>
@@ -730,7 +741,6 @@
                     </div>
 
                     <div onclick="openCollaboratorModal('greytip')" class="scroll-reveal bg-asl-card-bg p-6 rounded-xl shadow-xl text-center cursor-pointer interactive-card border border-asl-primary/30" style="transition-delay: 100ms;">
-                        <!--<i class="ph-fill ph-users-three text-5xl text-asl-primary mb-3"></i>-->
                         <img style = "object-position: center" src="images/collaborators/greytip.png" alt="GreytipHR" class="w-full h-32 object-cover rounded-lg mb-4">
                         <h3 class="text-xl font-bold text-asl-primary">Greytip Software</h3>
                         <p class="text-sm text-asl-accent">Cloud-based Payroll Partner</p>
@@ -738,7 +748,6 @@
                     </div>
                     
                     <div onclick="openCollaboratorModal('b-k')" class="scroll-reveal bg-asl-card-bg p-6 rounded-xl shadow-xl text-center cursor-pointer interactive-card border border-asl-primary/30" style="transition-delay: 200ms;">
-                        <!--<i class="ph-fill ph-handshake text-5xl text-asl-primary mb-3"></i>-->
                         <img style = "object-position: center; object-fit: contain;" src="images/collaborators/b&k.png" alt="B&K Consultancy" class="w-full h-32 object-cover rounded-lg mb-4">
                         <h3 class="text-xl font-bold text-asl-primary">B & K Consultancy</h3>
                         <p class="text-sm text-asl-accent">Specialized Domain Consulting</p>
@@ -756,13 +765,9 @@
                 </p>
 
                 <div class="bg-gray-50 p-8 rounded-xl shadow-2xl mb-12 text-center border-b-4 border-asl-primary scroll-reveal">
-                    <i class="ph-bold ph-medal text-4xl text-asl-accent mb-2"></i>
-                    <!-- START MODIFICATION -->
-                    <!-- Removed the fixed 'style="text-align: center; height: 400px; width: 100%"' and replaced with classes for proper vertical flow, preventing text overlap. -->
-                    <div class="py-4"> 
+                    <div style="text-align: center; height: 400px; width: 100%">
                         <img src = "images/testimonials/zoho_certificate.jpg" class="mx-auto w-full md:w-96 h-auto" alt = "ZOHO Certificate">
                     </div>
-                    <!-- END MODIFICATION -->
                     <h3 class="text-xl font-bold text-asl-primary">Certificate of Appreciation</h3>
                     <p class="text-sm text-asl-secondary">A symbol of our dedicated and effective service.</p>
                 </div>
@@ -1151,7 +1156,8 @@
             const partner = collaboratorData[collaboratorId];
             if (!partner) return;
 
-            document.getElementById('collaborator-icon').className = `${partner.icon} text-6xl text-asl-primary mb-3`;
+            // NOTE: Collaborator icon is removed in the HTML update since images are used. The line below can be skipped or updated if icons are reintroduced.
+            // document.getElementById('collaborator-icon').className = `${partner.icon} text-6xl text-asl-primary mb-3`;
             document.getElementById('collaborator-name').textContent = partner.name;
             document.getElementById('collaborator-tagline').textContent = partner.tagline;
 
@@ -1167,6 +1173,23 @@
             document.getElementById('collaborator-modal').classList.remove('open');
         }
 
+        // *** NEW: MOBILE MENU TOGGLE LOGIC ***
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+
+            if (menu.classList.contains('hidden')) {
+                // Open the menu
+                menu.classList.remove('hidden');
+                icon.classList.remove('ph-list');
+                icon.classList.add('ph-x'); // Change icon to 'X'
+            } else {
+                // Close the menu
+                menu.classList.add('hidden');
+                icon.classList.remove('ph-x');
+                icon.classList.add('ph-list'); // Change icon back to 'Hamburger'
+            }
+        }
 
         // 1. Smooth Scrolling for Navigation
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1175,6 +1198,14 @@
                 const targetId = this.getAttribute('href');
                 const targetElement = document.querySelector(targetId);
 
+                // *** NEW: Close mobile menu on click (for mobile links) ***
+                if (window.innerWidth < 768) { // Assuming md breakpoint is 768px
+                    const menu = document.getElementById('mobile-menu');
+                    if (!menu.classList.contains('hidden')) {
+                        toggleMobileMenu(); // Close the menu
+                    }
+                }
+                
                 // Check if target is 'home' to scroll right to the top
                 const offset = targetId === '#home' ? -64 : -64; // Adjusted for fixed navbar height
 
@@ -1189,6 +1220,7 @@
         document.addEventListener("DOMContentLoaded", () => {
             const intro = document.getElementById('intro-scene');
             const enterBtn = document.getElementById('enter-site-btn');
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn'); // Get the new button
 
             if (intro && enterBtn) {
                 enterBtn.addEventListener('click', () => {
@@ -1197,6 +1229,11 @@
                         intro.style.display = 'none';
                     }, 1000);
                 });
+            }
+
+            // *** NEW: Event listener for mobile menu button ***
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', toggleMobileMenu);
             }
             
             // Initial call for scroll-reveal observer
@@ -1347,22 +1384,24 @@
         // --- NEW: Active Nav Link Logic (Intersection Observer) ---
         function setActiveLink(id) {
             // 1. Remove active-link class from all
-            document.querySelectorAll('.nav-link').forEach(link => {
+            document.querySelectorAll('.nav-link, .mobile-nav-link').forEach(link => {
                 link.classList.remove('active-link');
             });
 
             // 2. Add active-link class to the matching link
             // Get the element whose data-section attribute matches the section id
-            const targetLink = document.querySelector(`.nav-link[data-section="${id}"]`);
-            if (targetLink) {
-                 // The 'Contact Us' link is a special case: don't highlight it unless 'contact' is active.
-                if (id === 'contact') {
-                    targetLink.classList.add('active-link');
-                } else if (id !== 'contact') {
-                    // For all other links, use the new active class
-                    targetLink.classList.add('active-link');
+            const targetLinks = document.querySelectorAll(`[data-section="${id}"]`);
+            targetLinks.forEach(targetLink => {
+                if (targetLink) {
+                    // The 'Contact Us' link is a special case: don't highlight it unless 'contact' is active.
+                    if (id === 'contact') {
+                        targetLink.classList.add('active-link');
+                    } else if (id !== 'contact') {
+                        // For all other links, use the new active class
+                        targetLink.classList.add('active-link');
+                    }
                 }
-            }
+            });
         }
 
         function setupSectionObserver() {
